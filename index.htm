@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Your Favorite Martian</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <header class="navbar" id="navbar">
+        <div class="logo-container" id="nav-target">
+            <!-- This acts as the destination for the animated logo -->
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- The actual logo that animates between the hero and the navbar -->
+    <a href="#home" id="animated-logo">yourfriendlymartian</a>
+
+    <main>
+        <!-- Hero section taking up the full viewport on initial load -->
+        <section id="home" class="hero">
+            <div id="hero-target"></div>
+        </section>
+
+        <!-- Extra content to allow for scrolling -->
+        <section id="projects" class="content-section">
+            <h2>Projects</h2>
+            <p>Scroll down to see the logo seamlessly transition into the nav bar's left side!</p>
+            <p style="margin-top: 20px; line-height: 2; color: #aaa;">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                <br><br>
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </section>
+        
+        <section id="about" class="content-section" style="height: 100vh;">
+            <h2>About</h2>
+            <p>More content to allow scrolling...</p>
+        </section>
+
+        <section id="contact" class="content-section" style="height: 100vh;">
+            <h2>Contact</h2>
+        </section>
+    </main>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>

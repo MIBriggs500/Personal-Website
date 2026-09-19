@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap');
+
+:root {
+    --bg-color: #050505;
+    --text-color: #f0f0f0;
+    --accent: #ff3366;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4rem;
+    z-index: 1000;
+    background: transparent;
+    transition: background 0.3s, backdrop-filter 0.3s;
+}
+
+.logo-container {
+    width: 300px;
+    height: 100%;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+/* Floating Animated Logo */
+#animated-logo {
+    position: fixed;
+    font-size: 8vw; /* Takes up a large portion of viewport initially */
+    font-weight: 900;
+    letter-spacing: -2px;
+    text-transform: lowercase; /* as requested: yourfriendlymartian */
+    color: var(--text-color);
+    text-decoration: none;
+    z-index: 1001;
+    transform-origin: left top;
+    white-space: nowrap;
+    will-change: transform;
+    /* Optional: gradient text for modern look */
+    background: linear-gradient(90deg, #ff3366, #ff9933);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#hero-target {
+    width: 100%;
+    height: 10px; /* Invisible marker used by JS to center the logo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Content Sections */
+.content-section {
+    padding: 100px 4rem;
+    min-height: 80vh;
+    background: var(--bg-color);
+    position: relative;
+    z-index: 10;
+}
+
+.content-section h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    #animated-logo { font-size: 12vw; }
+    .navbar { padding: 0 2rem; }
+    nav ul { display: none; }
+}
