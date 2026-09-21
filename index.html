@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YourFriendlyMartian | Portfolio & Blog</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <!-- Header / Navigation -->
+    <header class="header">
+        <nav class="navbar container">
+            <div class="logo-container">
+                <a href="#home" class="logo">YourFriendlyMartian</a>
+            </div>
+
+            <button class="nav-toggle" aria-label="Toggle Navigation">
+                <span class="hamburger"></span>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero section">
+            <div class="container hero-content">
+                <h1>Hello, I'm <span class="highlight">Mars</span></h1>
+                <p class="hero-subtitle">Software Developer, Roboticist, Content Creator, and Creative Writer.</p>
+                <p class="hero-description">
+                    Exploring the intersection of technology, storytelling, and interactive design.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>
+                            I am a passionate software engineer with experience spanning across full-stack web
+                            development, mobile apps, and game development.
+                        </p>
+                        <p>
+                            When I'm not coding, I devote my free time to writing fiction, essay pieces, and tech
+                            articles. I love exploring the intersection of technology, storytelling, and interactive
+                            design.
+                        </p>
+                        <div class="skills">
+                            <h3>Skills & Tech Stack</h3>
+                            <ul class="skill-tags">
+                                <li>JavaScript / TypeScript</li>
+                                <li>React / Vue</li>
+                                <li>HTML5 / CSS3</li>
+                                <li>Node.js</li>
+                                <li>Mobile Dev (React)</li>
+                                <li>Game Dev (Godot)</li>
+                                <li>Creative Writing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects section">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="card-grid">
+                    <!-- Project 1 -->
+                    <article class="card">
+                        <div class="card-content">
+                            <span class="card-tag">Game Development</span>
+                            <h3>Space Explorer Game</h3>
+                            <p>An indie 2D platformer made in Unity featuring custom physics and retro graphics.</p>
+                            <a href="#" class="card-link">View Project &rarr;</a>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="card">
+                        <div class="card-content">
+                            <span class="card-tag">Web Application</span>
+                            <h3>Writing Assistant Tool</h3>
+                            <p>A minimalist web app designed to keep writers focused, featuring word counters and
+                                ambient soundscapes.</p>
+                            <a href="#" class="card-link">View Project &rarr;</a>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article class="card">
+                        <div class="card-content">
+                            <span class="card-tag">Mobile App</span>
+                            <h3>Habit Tracker</h3>
+                            <p>A mobile application built to help users track daily writing goals and coding habits.</p>
+                            <a href="#" class="card-link">View Project &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+                <!-- Button rerdirecting to project homepage-->
+                <div class="project-footer">
+                    <a href="p/project.html" class="btn btn-primary">View All Projects &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="blog section">
+            <div class="container">
+                <h2 class="section-title">Latest Posts</h2>
+                <div class="card-grid">
+                    <!-- Blog Post 1 -->
+                    <article class="card blog-card">
+                        <div class="card-content">
+                            <time datetime="2026-09-15" class="post-date">Sep 15, 2026</time>
+                            <h3><a href="#">Worldbuilding in Interactive Storytelling</a></h3>
+                            <p>How narrative design principles in video games can improve traditional fiction writing.
+                            </p>
+                            <a href="#" class="card-link">Read Post &rarr;</a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 2 -->
+                    <article class="card blog-card">
+                        <div class="card-content">
+                            <time datetime="2026-08-28" class="post-date">Aug 28, 2026</time>
+                            <h3><a href="#">Why Every Developer Should Write</a></h3>
+                            <p>Exploring how writing fiction and tech blogs makes you a clearer communicator and better
+                                coder.</p>
+                            <a href="#" class="card-link">Read Post &rarr;</a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 3 -->
+                    <article class="card blog-card">
+                        <div class="card-content">
+                            <time datetime="2026-08-01" class="post-date">Aug 01, 2026</time>
+                            <h3><a href="#">Building Light 2D Games with HTML5 Canvas</a></h3>
+                            <p>A quick tutorial on creating simple browser-based games without heavy engines.</p>
+                            <a href="#" class="card-link">Read Post &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <!-- Button rerdirecting to blog homepage-->
+             <div class="blog-footer">
+                        <a href="b/blog.html" class="btn btn-primary">View All Posts &rarr;</a>
+                    </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="experience section">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-date">2024 - Present</span>
+                        <h3>Software Engineer</h3>
+                        <p class="timeline-company">Tech Company Inc.</p>
+                        <p>Developing web and mobile products, writing clean and scalable code, and collaborating with
+                            cross-functional teams.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-date">2022 - 2024</span>
+                        <h3>Junior Developer & Game Designer</h3>
+                        <p class="timeline-company">Indie Game Studio</p>
+                        <p>Contributed to gameplay programming, level design, and web tools for community features.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="contact-text">
+                    Whether you have a question, want to collaborate on a game or web project, or just want to say
+                    hi — feel free to drop a message!
+                </p>
+                <div class="contact-buttons">
+                    <a href="mailto:[EMAIL_ADDRESS]" class="btn btn-primary">Send Email</a>
+                    <div class="social-links">
+                        <a href="https://www.reddit.com/user/marsdoesit"
+                            rel="noopener noreferrer">Reddit</a>
+                        <a href="https://github.com/YourFriendlyMartian" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://yourfriendlymartian.itch.io/" target="_blank"
+                            rel="noopener noreferrer">itch.io</a>
+                        <a href="https://www.instagram.com/yourfriendlymartian/" target="_blank"
+                            rel="noopener noreferrer">Instagram</a>
+                        <a href="https://www.twitch.tv/MarsDoesIt" target="_blank"
+                            rel="noopener noreferrer">Twitch</a>
+                        <a href="https://www.wattpad.com/user/YourFriendlyMartian" target="_blank"
+                            rel="noopener noreferrer">Wattpad</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 YourFriendlyMartian. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+
+    <!-- Debug Floating Panel -->
+    <div class="theme-debug-panel">
+        <div class="debug-header">
+            <span>Theme Inspector</span>
+            <span id="activeModeLabel" style="color: #f43f5e;">DARK</span>
+        </div>
+
+        <div style="margin-bottom: 6px;">Force Theme Difference:</div>
+        <div class="debug-controls">
+            <button class="debug-btn active" id="btnVampire" onclick="setForceTheme('vampire')">Dark</button>
+            <button class="debug-btn" id="btnLight" onclick="setForceTheme('light')">Light</button>
+        </div>
+
+        <div style="margin-top: 8px; font-size: 0.7rem; color: #9ca3af;">Active Key Swatches:</div>
+        <div class="debug-swatches">
+            <div id="swatchBg" class="swatch-box">BG</div>
+            <div id="swatchPrimary" class="swatch-box">PRI</div>
+            <div id="swatchCard" class="swatch-box">CARD</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/modeToggle.js"></script>
+</body>
+
+</html>
