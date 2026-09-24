@@ -18,3 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Easter Egg to bring up search box if clicked
+//html reference is "EasterEgg"
+// If clicks MARS bring up easter egg box
+document.addEventListener('DOMContentLoaded', () => {
+    const EasterEgg = document.getElementById('EasterEgg');
+    const EasterEggBox = document.getElementById('EasterEggBox');
+
+    EasterEgg.addEventListener('click', () => {
+        EasterEggBox.style.display = 'flex';
+    });
+});
+
+// Secret code logic
+//codes: music, cat
