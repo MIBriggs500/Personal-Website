@@ -465,6 +465,87 @@ ul {
     }
 }
 
+/* --- Detail Overlay (Projects & Blog, replaces separate HTML pages) --- */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    padding: 6rem 1.5rem 2rem;
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.overlay-panel {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    max-width: 700px;
+    width: 100%;
+    height: fit-content;
+    padding: 2.5rem;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.overlay-content h2 {
+    font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem);
+    margin: 0.5rem 0 1rem;
+}
+
+.overlay-content p {
+    margin-bottom: 1rem;
+}
+
+.overlay-content a {
+    color: var(--primary-color);
+}
+
+.overlay-grid {
+    margin-top: 1.5rem;
+}
+
+.overlay-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    line-height: 1;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.overlay-close:hover {
+    color: var(--primary-color);
+}
+
+/* Overlay: tablets and below — full-bleed, edge-to-edge takeover */
+@media (max-width: 768px) {
+    .overlay {
+        padding: 70px 0 0;
+    }
+
+    .overlay-panel {
+        max-width: none;
+        min-height: calc(100vh - 70px);
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+    }
+}
+
 /* --- FLOATING DEBUG PANEL --- */
 .theme-debug-panel {
     position: fixed;
@@ -536,24 +617,38 @@ ul {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-#EasterEgg{
-    cursor: pointer;
-}
-
-#EasterEggBox {
-    /* Hidden*/
-    display: none;
-    z-index: 9999;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 30%;
-    height: 5%;
+/* --- Music Section Styling --- */
+.music-taste {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    padding: 1.5rem;
-    flex-direction: column;
-    gap: 1rem;
+}
+
+.music-taste h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.music-taste p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+}
+
+.music-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.music-list li {
+    background-color: var(--bg-color);
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    border: 1px solid var(--border-color);
+    font-weight: 600;
 }

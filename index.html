@@ -14,6 +14,9 @@
     <!-- CSS -->
     <link rel="stylesheet" href="styles/normalize.css">
     <link rel="stylesheet" href="styles/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 
 <body>
@@ -69,23 +72,17 @@
                             articles. I love exploring the intersection of technology, storytelling, and interactive
                             design.
                         </p>
-                        <div class="skills">
-                            <h3>Skills & Tech Stack</h3>
-                            <ul class="skill-tags">
-                                <li>Java</li>
-                                <li>C#</li>
-                                <li>C++</li>
-                                <li>Python</li>
-                                <li>JavaScript / TypeScript</li>
-                                <li>React / Vue</li>
-                                <li>HTML5 / CSS3</li>
-                                <li>Node.js</li>
-                                <li>Mobile Dev (React)</li>
-                                <li>Game Dev (Godot)</li>
-                                <li>3D Modeling (Blender)</li>
-                                <li>Creative Writing</li>
-                            </ul>
-                        </div>
+                    </div>
+                    <!-- Music Taste-->
+                    <!-- Music Taste -->
+                    <div class="music-taste">
+                        <h3>Music Taste</h3>
+                        <p>I am a big fan of indie music. My favorite artists include:</p>
+                        <ul class="music-list">
+                            <li>Sufjan Stevens</li>
+                            <li>Ricky Montgomery</li>
+                            <li>Mother Mother</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -102,7 +99,7 @@
                             <span class="card-tag">Personal Robot Project</span>
                             <h3>Robert</h3>
                             <p>A personal robot project that I am currently working on. It is a work in progress.</p>
-                            <a href="Projects/Robert.html" class="card-link">View Project &rarr;</a>
+                            <a href="#project/robert" class="card-link">View Project &rarr;</a>
                         </div>
                     </article>
 
@@ -112,14 +109,14 @@
                             <span class="card-tag">Minecraft Server</span>
                             <h3>The Afterlife</h3>
                             <p>A Minecraft server that I am currently working on.</p>
-                            <a href="Projects/minecraft.html" class="card-link">View Project &rarr;</a>
+                            <a href="#project/minecraft" class="card-link">View Project &rarr;</a>
                         </div>
                     </article>
 
                 </div>
-                <!-- Button rerdirecting to project homepage-->
+                <!-- Button rerdirecting to project overlay-->
                 <div class="project-footer">
-                    <a href="Projects/portfolio.html" class="btn btn-primary">View All Projects &rarr;</a>
+                    <a href="#project/all" class="btn btn-primary">View All Projects &rarr;</a>
                 </div>
             </div>
         </section>
@@ -133,18 +130,20 @@
                     <article class="card blog-card">
                         <div class="card-content">
                             <time datetime="2026-09-15" class="post-date">Sep 15, 2026</time>
-                            <h3><a href="#">Worldbuilding in Interactive Storytelling</a></h3>
+                            <h3><a href="#blog/worldbuilding-in-interactive-storytelling">Worldbuilding in Interactive
+                                    Storytelling</a></h3>
                             <p>How narrative design principles in video games can improve traditional fiction writing.
                             </p>
-                            <a href="#" class="card-link">Read Post &rarr;</a>
+                            <a href="#blog/worldbuilding-in-interactive-storytelling" class="card-link">Read Post
+                                &rarr;</a>
                         </div>
                     </article>
 
                 </div>
             </div>
-            <!-- Button rerdirecting to blog homepage-->
+            <!-- Button rerdirecting to blog overlay-->
             <div class="blog-footer">
-                <a href="Blog/blog.html" class="btn btn-primary">View All Posts &rarr;</a>
+                <a href="#blog/all" class="btn btn-primary">View All Posts &rarr;</a>
             </div>
         </section>
 
@@ -159,6 +158,23 @@
                         <p class="timeline-company">Grizzly Gears FRC #9580</p>
                         <p>Mentored high school students in robotics, guiding them through the design, build, and
                             programming phases of their competition robot.</p>
+                    </div>
+                    <div class="skills">
+                        <h3>Skills & Tech Stack</h3>
+                        <ul class="skill-tags">
+                            <li>Java</li>
+                            <li>C#</li>
+                            <li>C++</li>
+                            <li>Python</li>
+                            <li>JavaScript / TypeScript</li>
+                            <li>React / Vue</li>
+                            <li>HTML5 / CSS3</li>
+                            <li>Node.js</li>
+                            <li>Mobile Dev (React)</li>
+                            <li>Game Dev (Godot)</li>
+                            <li>3D Modeling (Blender)</li>
+                            <li>Creative Writing</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -176,10 +192,8 @@
                     <!-- <a href="mailto:[EMAIL_ADDRESS]" class="btn btn-primary">Send Email</a> -->
                     <div class="social-links">
                         <a href="https://www.reddit.com/user/marsdoesit" rel="noopener noreferrer">Reddit</a>
-                        <a href="https://github.com/MIBriggs500" target="_blank"
-                            rel="noopener noreferrer">GitHub</a>
-                        <a href="https://marsdoesit.itch.io/" target="_blank"
-                            rel="noopener noreferrer">itch.io</a>
+                        <a href="https://github.com/MIBriggs500" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://marsdoesit.itch.io/" target="_blank" rel="noopener noreferrer">itch.io</a>
                         <a href="https://www.instagram.com/yourfriendlymartian/" target="_blank"
                             rel="noopener noreferrer">Instagram</a>
                         <a href="https://www.twitch.tv/MarsDoesIt" target="_blank" rel="noopener noreferrer">Twitch</a>
@@ -190,6 +204,16 @@
             </div>
         </section>
     </main>
+
+    <!-- Project / Blog Detail Overlay (replaces separate HTML pages) -->
+    <div class="overlay" id="detailOverlay" aria-hidden="true">
+        <div class="overlay-panel" role="dialog" aria-modal="true" aria-labelledby="overlayTitle">
+            <button class="overlay-close" id="overlayClose" aria-label="Close">&times;</button>
+            <div class="overlay-content" id="overlayContent">
+                <!-- Populated by scripts/main.js -->
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -234,6 +258,7 @@
     </script>
 
     <!-- JavaScript -->
+    <script src="scripts/data.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/modeToggle.js"></script>
 
