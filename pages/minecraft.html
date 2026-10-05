@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Afterlife | Minecraft Server</title>
+    <meta name="description"
+        content="The Afterlife: a 26.2 survival Minecraft server with seasonal resource packs and events. Server info, how to apply, and a gallery.">
+    <meta name="theme-color" content="#12161f" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f4efe3" media="(prefers-color-scheme: light)">
+    <meta property="og:title" content="The Afterlife | Minecraft Server">
+    <meta property="og:description" content="A 26.2 survival server with seasonal resource packs and events.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Press+Start+2P&family=VT323&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="../favicon.png">
+
+    <style>
+        /* ---------- Theme: day by default, night when the system is dark ---------- */
+        :root {
+            color-scheme: light;
+            --page: #f4efe3;
+            --check: rgba(0, 0, 0, 0.035);
+            --panel: #fffaf0;
+            --panel-2: #efe6d2;
+            --text: #2b2418;
+            --muted: #6d604a;
+            --ink: #1b1b1b;
+            --grass: #5b9e3a;
+            --grass-dark: #3f7a28;
+            --dirt: #8a5a35;
+            --dirt-dark: #6e4524;
+            --stone: #8b8b8b;
+            --gold: #f2b632;
+            --shadow: rgba(60, 40, 10, 0.25);
+            --bevel: inset -4px -4px 0 rgba(0, 0, 0, 0.28), inset 4px 4px 0 rgba(255, 255, 255, 0.35);
+            --bevel-down: inset 4px 4px 0 rgba(0, 0, 0, 0.28), inset -4px -4px 0 rgba(255, 255, 255, 0.2);
+            --pixel: 'Press Start 2P', 'Courier New', monospace;
+            --mono: 'VT323', 'Courier New', monospace;
+            --body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                color-scheme: dark;
+                --page: #12161f;
+                --check: rgba(255, 255, 255, 0.025);
+                --panel: #1c2230;
+                --panel-2: #252d3f;
+                --text: #e8ecf5;
+                --muted: #9aa5bd;
+                --ink: #000000;
+                --grass: #5fb04a;
+                --grass-dark: #3f8a2e;
+                --shadow: rgba(0, 0, 0, 0.5);
+            }
+        }
+
+        /* ---------- Base ---------- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            background-color: var(--page);
+            background-image: conic-gradient(var(--check) 25%, transparent 0 50%, var(--check) 0 75%, transparent 0);
+            background-size: 48px 48px;
+            color: var(--text);
+            font-family: var(--body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--grass-dark);
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--gold);
+            outline-offset: 3px;
+        }
+
+        .wrap {
+            width: 92%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--pixel);
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        /* ---------- Buttons (blocky, Minecraft-menu style) ---------- */
+        .mc-btn {
+            display: inline-block;
+            font-family: var(--pixel);
+            font-size: 0.7rem;
+            line-height: 1.4;
+            text-decoration: none;
+            color: #ffffff;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45);
+            background: var(--stone);
+            border: 3px solid var(--ink);
+            box-shadow: var(--bevel);
+            padding: 0.9rem 1.2rem;
+            cursor: pointer;
+            text-align: center;
+            transition: filter 0.15s ease, transform 0.15s ease;
+        }
+
+        .mc-btn:hover {
+            filter: brightness(1.12);
+            color: #ffffff;
+        }
+
+        .mc-btn:active {
+            box-shadow: var(--bevel-down);
+            transform: translateY(2px);
+        }
+
+        .mc-btn.primary {
+            background: var(--grass);
+        }
+
+        .mc-btn[hidden] {
+            display: none;
+        }
+
+        .mc-btn[aria-disabled="true"] {
+            filter: grayscale(0.7);
+            cursor: not-allowed;
+        }
+
+        /* ---------- Top bar ---------- */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--panel);
+            border-bottom: 4px solid var(--ink);
+        }
+
+        .topbar .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            min-height: 60px;
+            flex-wrap: wrap;
+            padding: 0.4rem 0;
+        }
+
+        .topbar a {
+            font-family: var(--pixel);
+            font-size: 0.6rem;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .topbar a:hover {
+            color: var(--grass-dark);
+        }
+
+        .topbar nav {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            text-align: center;
+            padding: clamp(2.5rem, 7vw, 5rem) 0 clamp(2rem, 5vw, 3rem);
+        }
+
+        .hero h1 {
+            font-size: clamp(1.3rem, 0.9rem + 3.6vw, 3rem);
+            color: var(--grass);
+            text-shadow: 4px 4px 0 var(--grass-dark), 8px 8px 0 var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p.tagline {
+            max-width: 560px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.1rem;
+            color: var(--muted);
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: center;
+        }
+
+        .badge {
+            font-family: var(--pixel);
+            font-size: 0.55rem;
+            padding: 0.55rem 0.8rem;
+            background: var(--panel);
+            border: 3px solid var(--ink);
+            box-shadow: 3px 3px 0 var(--shadow);
+        }
+
+        .badge.gold {
+            background: var(--gold);
+            color: #2b2418;
+        }
+
+        /* Strip of grass + dirt blocks used as a divider */
+        .blocks {
+            height: 40px;
+            background:
+                repeating-linear-gradient(90deg, transparent 0 39px, rgba(0, 0, 0, 0.16) 39px 40px),
+                linear-gradient(var(--grass) 0 30%, var(--dirt) 30% 100%);
+            border-top: 4px solid var(--ink);
+            border-bottom: 4px solid var(--ink);
+        }
+
+        /* ---------- Panels ---------- */
+        .panel {
+            background: var(--panel);
+            border: 4px solid var(--ink);
+            box-shadow: 6px 6px 0 var(--shadow);
+            padding: 1.5rem;
+        }
+
+        .panel h2 {
+            font-size: clamp(0.9rem, 0.7rem + 0.8vw, 1.15rem);
+            margin-bottom: 1.25rem;
+        }
+
+        .top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.75rem;
+            padding: clamp(2rem, 5vw, 3.5rem) 0;
+            align-items: start;
+        }
+
+        /* Server info */
+        .info-list {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            padding: 0.7rem 0.9rem;
+            background: var(--panel-2);
+            border: 3px solid var(--ink);
+        }
+
+        .info-row dt {
+            font-family: var(--pixel);
+            font-size: 0.55rem;
+            color: var(--muted);
+        }
+
+        .info-row dd {
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .address-label {
+            font-family: var(--pixel);
+            font-size: 0.55rem;
+            color: var(--muted);
+            margin: 1.25rem 0 0.5rem;
+        }
+
+        .address {
+            display: flex;
+            gap: 0.6rem;
+            align-items: stretch;
+            flex-wrap: wrap;
+        }
+
+        .address code {
+            flex: 1 1 200px;
+            font-family: var(--mono);
+            font-size: 1.5rem;
+            line-height: 1.2;
+            padding: 0.5rem 0.8rem;
+            background: #000000;
+            color: #ffffff;
+            border: 3px solid #a0a0a0;
+            overflow-wrap: anywhere;
+        }
+
+        /* How to apply */
+        .steps {
+            list-style: none;
+            counter-reset: step;
+            display: grid;
+            gap: 0.9rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .steps li {
+            counter-increment: step;
+            position: relative;
+            padding-left: 3.2rem;
+            min-height: 2.4rem;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.2rem;
+            height: 2.2rem;
+            display: grid;
+            place-items: center;
+            font-family: var(--pixel);
+            font-size: 0.7rem;
+            color: #ffffff;
+            background: var(--dirt);
+            border: 3px solid var(--ink);
+            box-shadow: var(--bevel);
+        }
+
+        .steps strong {
+            display: block;
+        }
+
+        .steps span {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .include {
+            padding: 0.9rem 1rem;
+            margin-bottom: 1.25rem;
+            background: var(--panel-2);
+            border: 3px dashed var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .include h3 {
+            font-size: 0.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .include ul {
+            padding-left: 1.2rem;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        /* ---------- Gallery ---------- */
+        .gallery-section {
+            padding: clamp(2rem, 5vw, 3.5rem) 0 clamp(3rem, 6vw, 5rem);
+        }
+
+        .gallery-section h2 {
+            font-size: clamp(1rem, 0.8rem + 1vw, 1.4rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-section .sub {
+            color: var(--muted);
+            margin-bottom: 1.25rem;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+        }
+
+        .chip {
+            font-family: var(--pixel);
+            font-size: 0.55rem;
+            padding: 0.6rem 0.9rem;
+            color: var(--text);
+            background: var(--panel);
+            border: 3px solid var(--ink);
+            box-shadow: 3px 3px 0 var(--shadow);
+            cursor: pointer;
+        }
+
+        .chip[aria-pressed="true"] {
+            background: var(--grass);
+            color: #ffffff;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery {
+            columns: 3 260px;
+            column-gap: 1.75rem;
+        }
+
+        .polaroid {
+            --r: 0deg;
+            position: relative;
+            display: block;
+            width: 100%;
+            margin: 0 0 1.75rem;
+            padding: 0.7rem 0.7rem 0.4rem;
+            break-inside: avoid;
+            text-align: left;
+            font: inherit;
+            color: inherit;
+            background: var(--panel);
+            border: 3px solid var(--ink);
+            box-shadow: 5px 5px 0 var(--shadow);
+            transform: rotate(var(--r));
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .polaroid:nth-child(3n+1) {
+            --r: -1.6deg;
+        }
+
+        .polaroid:nth-child(3n+2) {
+            --r: 1.2deg;
+        }
+
+        .polaroid:nth-child(3n) {
+            --r: -0.6deg;
+        }
+
+        .polaroid::before {
+            /* strip of tape */
+            content: '';
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            width: 70px;
+            height: 22px;
+            transform: translateX(-50%) rotate(-3deg);
+            background: rgba(242, 182, 50, 0.7);
+            border: 2px solid rgba(0, 0, 0, 0.25);
+            z-index: 3;
+        }
+
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.03);
+            box-shadow: 8px 8px 0 var(--shadow);
+        }
+
+        .polaroid h3 {
+            font-size: 0.6rem;
+            margin: 0.8rem 0 0.3rem;
+        }
+
+        .polaroid p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .polaroid[hidden] {
+            display: none;
+        }
+
+        /* Screenshot frame. Without a "src" it shows a pixel-art placeholder scene. */
+        .shot {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            border: 3px solid var(--ink);
+            background: linear-gradient(var(--s1), var(--s2));
+            image-rendering: pixelated;
+        }
+
+        .shot.tall {
+            aspect-ratio: 3 / 4;
+        }
+
+        .shot::before {
+            /* sun / moon block */
+            content: '';
+            position: absolute;
+            top: 13%;
+            right: 15%;
+            width: 16%;
+            aspect-ratio: 1;
+            background: var(--orb);
+            box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.18);
+        }
+
+        .shot::after {
+            /* ground: grass/dirt blocks */
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 30%;
+            background:
+                repeating-linear-gradient(90deg, transparent 0 23px, rgba(0, 0, 0, 0.14) 23px 24px),
+                linear-gradient(var(--g1) 0 22%, var(--g2) 22% 100%);
+        }
+
+        .shot i {
+            /* blocky cloud */
+            position: absolute;
+            top: 24%;
+            left: 12%;
+            width: 44px;
+            height: 14px;
+            background: var(--cloud, rgba(255, 255, 255, 0.85));
+            box-shadow: 14px -10px 0 0 var(--cloud, rgba(255, 255, 255, 0.85)), 30px 0 0 0 var(--cloud, rgba(255, 255, 255, 0.85));
+        }
+
+        .shot img {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .scene-sunset {
+            --s1: #ffb36b;
+            --s2: #ff7a8a;
+            --orb: #fff3b0;
+            --g1: #5b9e3a;
+            --g2: #8a5a35;
+        }
+
+        .scene-cave {
+            --s1: #2b2b3a;
+            --s2: #14141c;
+            --orb: #f2b632;
+            --g1: #6b6b6b;
+            --g2: #4a4a4a;
+            --cloud: rgba(255, 255, 255, 0.08);
+        }
+
+        .scene-snow {
+            --s1: #cfe8ff;
+            --s2: #eef7ff;
+            --orb: #ffffff;
+            --g1: #f4f8fb;
+            --g2: #8a5a35;
+        }
+
+        .scene-autumn {
+            --s1: #f6c177;
+            --s2: #e08a4a;
+            --orb: #fff0c2;
+            --g1: #b5651d;
+            --g2: #6e4524;
+        }
+
+        .scene-meadow {
+            --s1: #8fd3f4;
+            --s2: #d6f0ff;
+            --orb: #fff6a8;
+            --g1: #63b34a;
+            --g2: #8a5a35;
+        }
+
+        .scene-night {
+            --s1: #0f1230;
+            --s2: #2a2f6b;
+            --orb: #e8ecff;
+            --g1: #2f6b3a;
+            --g2: #4b3322;
+            --cloud: rgba(255, 255, 255, 0.12);
+        }
+
+        /* ---------- Lightbox ---------- */
+        dialog {
+            width: min(92vw, 720px);
+            margin: auto;
+            padding: 0;
+            color: var(--text);
+            background: var(--panel);
+            border: 4px solid var(--ink);
+            box-shadow: 8px 8px 0 var(--shadow);
+        }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .lb-inner {
+            padding: 1.25rem;
+        }
+
+        .lb-inner h3 {
+            font-size: 0.8rem;
+            margin: 1rem 0 0.4rem;
+        }
+
+        .lb-inner p {
+            color: var(--muted);
+        }
+
+        .lb-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            z-index: 5;
+            width: 44px;
+            height: 44px;
+            font-family: var(--pixel);
+            font-size: 1rem;
+            color: #ffffff;
+            background: #b3392f;
+            border: 3px solid var(--ink);
+            box-shadow: var(--bevel);
+            cursor: pointer;
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            text-align: center;
+            padding: 2rem 0 3rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            font-weight: 600;
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 820px) {
+            .top {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                padding: 1.15rem;
+            }
+
+            .gallery {
+                columns: 2 150px;
+                column-gap: 1.1rem;
+            }
+
+            .polaroid {
+                margin-bottom: 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                columns: 1;
+            }
+
+            .info-row {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+
+            .info-row dd {
+                text-align: left;
+            }
+
+            .actions .mc-btn {
+                flex: 1 1 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            * {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="wrap">
+            <a href="../index.html#projects">&larr; Back to portfolio</a>
+            <nav aria-label="Page sections">
+                <a href="#info">Info</a>
+                <a href="#apply">Apply</a>
+                <a href="#gallery">Gallery</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero wrap">
+            <h1>The Afterlife</h1>
+            <p class="tagline">A cozy survival server with seasonal resource packs and community events.</p>
+            <p>CURRENTLY A WORK IN PROGRESS</p>
+            <div class="badges">
+                <span class="badge gold">Version 26.2</span>
+                <span class="badge">Survival</span>
+                <span class="badge">Seasonal packs</span>
+                <span class="badge">Events</span>
+            </div>
+        </section>
+
+        <div class="blocks" aria-hidden="true"></div>
+
+        <!-- Server info + how to apply -->
+        <div class="wrap top">
+            <section class="panel" id="info" aria-labelledby="infoTitle">
+                <h2 id="infoTitle">Server Info</h2>
+                <dl class="info-list">
+                    <div class="info-row"><dt>EDITION</dt><dd>Java</dd></div>
+                    <div class="info-row"><dt>VERSION</dt><dd>26.2</dd></div>
+                    <div class="info-row"><dt>MODE</dt><dd>Survival</dd></div>
+                    <div class="info-row"><dt>EXTRAS</dt><dd>Seasonal resource packs &amp; events</dd></div>
+                    <div class="info-row"><dt>ACCESS</dt><dd>Apply to join</dd></div>
+                </dl>
+
+                <p class="address-label">SERVER ADDRESS</p>
+                <div class="address">
+                    <!-- EDIT: replace with your real server address -->
+                    <code id="serverAddress">laurel-dignity.tun.ply.gg</code>
+                    <button class="mc-btn" id="copyBtn" type="button">Copy</button>
+                </div>
+            </section>
+
+            <section class="panel" id="apply" aria-labelledby="applyTitle">
+                <h2 id="applyTitle">How to Apply</h2>
+                <!-- EDIT: adjust these steps to match your real process -->
+                <ol class="steps">
+                    <li>
+                        <strong>Say hello</strong>
+                        <span>Join the community channel and read the server rules.</span>
+                    </li>
+                    <li>
+                        <strong>Fill out the application</strong>
+                        <span>It only takes a few minutes. Tell us a bit about you.</span>
+                    </li>
+                    <li>
+                        <strong>Wait for a reply</strong>
+                        <span>Applications are reviewed by hand, so give it a little time.</span>
+                    </li>
+                    <li>
+                        <strong>Get whitelisted &amp; jump in</strong>
+                        <span>Once you're approved, add the server address and come say hi at spawn.</span>
+                    </li>
+                </ol>
+
+                <div class="include">
+                    <h3>WHAT TO INCLUDE</h3>
+                    <ul>
+                        <li>Your Minecraft Java username</li>
+                        <li>What you like to do or build in survival</li>
+                        <li>How you found the server</li>
+                    </ul>
+                </div>
+
+                <div class="actions">
+                    <!-- EDIT: replace APPLY_LINK_HERE with your application form URL -->
+                    <a class="mc-btn primary" id="applyBtn" href="APPLY_LINK_HERE" target="_blank"
+                        rel="noopener noreferrer">Apply now</a>
+                    <!-- EDIT (optional): replace DISCORD_LINK_HERE, or delete this link -->
+                    <a class="mc-btn" id="discordBtn" href="DISCORD_LINK_HERE" target="_blank"
+                        rel="noopener noreferrer">Join the Discord</a>
+                </div>
+            </section>
+        </div>
+
+        <div class="blocks" aria-hidden="true"></div>
+
+        <!-- Gallery -->
+        <section class="gallery-section wrap" id="gallery" aria-labelledby="galleryTitle">
+            <h2 id="galleryTitle">Gallery</h2>
+            <p class="sub">Little moments from around the world. Tap a photo to see it bigger.</p>
+            <div class="chips" id="chips" role="group" aria-label="Filter gallery"></div>
+            <div class="gallery" id="gallery-grid"></div>
+            <noscript>
+                <p class="sub">The gallery needs JavaScript to display.</p>
+            </noscript>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <p>Not affiliated with Mojang or Microsoft.</p>
+        </div>
+    </footer>
+
+    <dialog id="lightbox" aria-label="Photo viewer">
+        <button class="lb-close" id="lbClose" type="button" aria-label="Close">&times;</button>
+        <div class="lb-inner" id="lbBody"></div>
+    </dialog>
+
+    <script>
+        // ---------- Gallery content: edit this list ----------
+        // scene: placeholder look when there is no screenshot (sunset, cave, snow, autumn, meadow, night)
+        // src:   path to your screenshot, e.g. "../images/spawn.png" (leave "" to keep the placeholder)
+        // tag:   builds | seasonal | events    tall: true for a portrait photo
+        const GALLERY = [
+            { title: 'Spawn at golden hour', caption: 'Where every new player starts.', tag: 'builds', scene: 'sunset', src: '' },
+            { title: 'Lantern cave', caption: 'Mining is cozier with lights.', tag: 'builds', scene: 'cave', src: '', tall: true },
+            { title: 'Snowfall season', caption: 'The winter resource pack.', tag: 'seasonal', scene: 'snow', src: '' },
+            { title: 'Harvest festival', caption: 'Autumn event, pumpkins everywhere.', tag: 'events', scene: 'autumn', src: '', tall: true },
+            { title: 'Meadow home', caption: 'A little house with a big garden.', tag: 'builds', scene: 'meadow', src: '' },
+            { title: 'Night market', caption: 'Community trading night.', tag: 'events', scene: 'night', src: '' },
+            { title: 'Spring bloom', caption: 'Flowers for the spring pack.', tag: 'seasonal', scene: 'meadow', src: '', tall: true },
+            { title: 'Sunset skyline', caption: 'The view from the tallest tower.', tag: 'builds', scene: 'sunset', src: '' }
+        ];
+
+        const FILTERS = [
+            { id: 'all', label: 'All' },
+            { id: 'builds', label: 'Builds' },
+            { id: 'seasonal', label: 'Seasonal' },
+            { id: 'events', label: 'Events' }
+        ];
+
+        // ---------- Gallery rendering ----------
+        const grid = document.getElementById('gallery-grid');
+        const chips = document.getElementById('chips');
+        const lightbox = document.getElementById('lightbox');
+        const lbBody = document.getElementById('lbBody');
+
+        function buildShot(item) {
+            const shot = document.createElement('div');
+            shot.className = `shot scene-${item.scene || 'meadow'}${item.tall ? ' tall' : ''}`;
+            shot.appendChild(document.createElement('i'));
+            if (item.src) {
+                const img = document.createElement('img');
+                img.src = item.src;
+                img.alt = item.title;
+                img.loading = 'lazy';
+                shot.appendChild(img);
+            }
+            return shot;
+        }
+
+        function textEl(tag, text) {
+            const el = document.createElement(tag);
+            el.textContent = text;
+            return el;
+        }
+
+        GALLERY.forEach(item => {
+            const card = document.createElement('button');
+            card.type = 'button';
+            card.className = 'polaroid';
+            card.dataset.tag = item.tag;
+            card.setAttribute('aria-label', `${item.title}. Open larger view`);
+            card.append(buildShot(item), textEl('h3', item.title), textEl('p', item.caption));
+            card.addEventListener('click', () => {
+                lbBody.replaceChildren(buildShot(item), textEl('h3', item.title), textEl('p', item.caption));
+                lightbox.showModal();
+            });
+            grid.appendChild(card);
+        });
+
+        FILTERS.forEach((f, i) => {
+            const chip = document.createElement('button');
+            chip.type = 'button';
+            chip.className = 'chip';
+            chip.textContent = f.label;
+            chip.setAttribute('aria-pressed', String(i === 0));
+            chip.addEventListener('click', () => {
+                chips.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', 'false'));
+                chip.setAttribute('aria-pressed', 'true');
+                grid.querySelectorAll('.polaroid').forEach(card => {
+                    card.hidden = f.id !== 'all' && card.dataset.tag !== f.id;
+                });
+            });
+            chips.appendChild(chip);
+        });
+
+        // Lightbox: close button, backdrop click (Escape is built into <dialog>)
+        document.getElementById('lbClose').addEventListener('click', () => lightbox.close());
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) lightbox.close();
+        });
+
+        // ---------- Copy server address ----------
+        const copyBtn = document.getElementById('copyBtn');
+        copyBtn.addEventListener('click', async () => {
+            const address = document.getElementById('serverAddress').textContent.trim();
+            try {
+                await navigator.clipboard.writeText(address);
+                copyBtn.textContent = 'Copied!';
+            } catch (err) {
+                copyBtn.textContent = 'Press Ctrl+C';
+                const range = document.createRange();
+                range.selectNodeContents(document.getElementById('serverAddress'));
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+            setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1800);
+        });
+
+        // ---------- Placeholder links: disable until real URLs are filled in ----------
+        const applyBtn = document.getElementById('applyBtn');
+        const discordBtn = document.getElementById('discordBtn');
+
+        if (applyBtn.getAttribute('href') === 'APPLY_LINK_HERE') {
+            applyBtn.textContent = 'Applications opening soon';
+            applyBtn.setAttribute('aria-disabled', 'true');
+            applyBtn.addEventListener('click', e => e.preventDefault());
+        }
+        if (discordBtn.getAttribute('href') === 'DISCORD_LINK_HERE') {
+            discordBtn.hidden = true;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | MarsDoesIt</title>
+    <meta name="description"
+        content="More about Mars: favorite games, books, movies, music, and everything else worth knowing.">
+    <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles/normalize.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" type="image/png" href="../favicon.png">
+
+    <style>
+        /* Page-specific styles; colours and spacing come from the shared stylesheet */
+        .page-hero {
+            padding: calc(var(--header-height) + 3rem) 0 1rem;
+            background: radial-gradient(ellipse 60% 70% at 15% 20%, var(--glow-color), transparent 70%);
+        }
+
+        .page-hero h1 {
+            font-size: clamp(2rem, 1.4rem + 3vw, 3.25rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            max-width: 60ch;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .jump {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.75rem;
+        }
+
+        .jump a {
+            padding: 0.4rem 0.9rem;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            background-color: var(--card-bg);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .jump a:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .section-blurb {
+            color: var(--text-muted);
+            max-width: 60ch;
+            margin: -0.75rem 0 1.75rem;
+        }
+
+        /* Quick facts */
+        .fact-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+
+        .fact {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+        }
+
+        .fact dt {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-weight: 600;
+        }
+
+        .fact dd {
+            margin-top: 0.15rem;
+        }
+
+        /* Favorites cards */
+        .fav-card h3 {
+            margin-bottom: 0.25rem;
+        }
+
+        .fav-card .by {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .fav-card p {
+            margin-bottom: 0;
+        }
+
+        /* Entries still waiting for real content look obviously unfinished */
+        .fav-card.todo {
+            border-style: dashed;
+            opacity: 0.7;
+        }
+
+        .fav-card.todo h3,
+        .fav-card.todo p {
+            font-style: italic;
+        }
+
+        /* Currently into */
+        .now-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .now-item {
+            border-left: 2px solid var(--primary-color);
+            padding-left: 1rem;
+        }
+
+        .now-item span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .now-item strong {
+            font-weight: 600;
+        }
+
+        .back-link {
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .back-link:hover {
+            color: var(--primary-color);
+        }
+
+
+        /* ---------- Pinterest-style board background ---------- */
+        :root {
+            --p0: #3a2230;
+            --p1: #2b2f4a;
+            --p2: #3d3226;
+            --p3: #234038;
+            --p4: #4a2b2b;
+            --p5: #2e3a4a;
+            --p6: #40354f;
+            --p7: #4a3f2a;
+            --board-veil: 0.55;
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --p0: #f3d9d4;
+                --p1: #d9e6df;
+                --p2: #f5e6c8;
+                --p3: #dcd8ec;
+                --p4: #e8d3c5;
+                --p5: #cfe0e8;
+                --p6: #efd6e1;
+                --p7: #e3e8cf;
+                --board-veil: 0.4;
+            }
+        }
+
+        .pinboard {
+            position: fixed;
+            inset: -10% -2% 0;
+            z-index: 0;
+            display: flex;
+            gap: 14px;
+            padding: 0 14px;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .pinboard::after {
+            /* veil keeps text readable on top of the pins */
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--bg-color);
+            opacity: var(--board-veil);
+        }
+
+        .pin-col {
+            flex: 1 1 0;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            animation: drift 70s ease-in-out infinite alternate;
+        }
+
+        .pin-col:nth-child(even) {
+            animation-direction: alternate-reverse;
+            animation-duration: 90s;
+        }
+
+        @keyframes drift {
+            from { transform: translateY(0); }
+            to { transform: translateY(-9%); }
+        }
+
+        .pin {
+            position: relative;
+            flex: none;
+            border-radius: 18px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+        }
+
+        .pin::after {
+            /* soft highlight so empty pins read as photos */
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--x, 30%) var(--y, 25%), rgba(255, 255, 255, 0.22), transparent 55%);
+        }
+
+        .pin.c0 { background-image: linear-gradient(150deg, var(--p0), var(--p1)); }
+        .pin.c1 { background-image: linear-gradient(150deg, var(--p1), var(--p2)); }
+        .pin.c2 { background-image: linear-gradient(150deg, var(--p2), var(--p3)); }
+        .pin.c3 { background-image: linear-gradient(150deg, var(--p3), var(--p4)); }
+        .pin.c4 { background-image: linear-gradient(150deg, var(--p4), var(--p5)); }
+        .pin.c5 { background-image: linear-gradient(150deg, var(--p5), var(--p6)); }
+        .pin.c6 { background-image: linear-gradient(150deg, var(--p6), var(--p7)); }
+        .pin.c7 { background-image: linear-gradient(150deg, var(--p7), var(--p0)); }
+
+        /* Photos you add via BOARD_IMAGES replace the gradient */
+        .pin.photo::after {
+            display: none;
+        }
+
+        /* Fewer columns on smaller screens */
+        @media (max-width: 900px) {
+            .pin-col:nth-child(n+5) { display: none; }
+        }
+
+        @media (max-width: 560px) {
+            .pin-col:nth-child(n+3) { display: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .pin-col { animation: none; }
+        }
+
+        /* Content sits above the board on translucent "notes" */
+        main,
+        .footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        #content .container {
+            background-color: var(--card-bg);
+            background-color: color-mix(in srgb, var(--card-bg) 82%, transparent);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: clamp(1.25rem, 3vw, 2rem);
+            box-shadow: 0 10px 30px var(--shadow-color);
+        }
+
+        #content .section {
+            padding: clamp(1rem, 2.5vw, 1.75rem) 0;
+        }
+
+        .footer {
+            background-color: var(--bg-color);
+        }
+
+        .board-link {
+            margin-top: 1.25rem;
+        }
+
+        .to-top {
+            text-align: center;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <!-- Pinterest-style board background; built by the script at the bottom of the page -->
+    <div class="pinboard" id="pinboard" aria-hidden="true"></div>
+
+    <header class="header scrolled" id="siteHeader">
+        <nav class="navbar container" aria-label="Main navigation">
+            <div class="logo-container">
+                <a href="../index.html" class="logo">MarsDoesIt</a>
+            </div>
+            <a href="../index.html#about" class="back-link">&larr; Back to home</a>
+        </nav>
+    </header>
+
+    <main id="main">
+        <section class="page-hero">
+            <div class="container">
+                <h1>More About <span class="highlight">Me</span></h1>
+                <p>The longer version: what I play, read, watch and listen to, plus whatever else you might be
+                    curious about.</p>
+                <nav class="jump" id="jump" aria-label="Jump to a section"></nav>
+            </div>
+        </section>
+
+        <!-- Everything below is generated from the ABOUT object in the script at the bottom of this page. -->
+        <div id="content"></div>
+        <noscript>
+            <section class="section">
+                <div class="container">
+                    <p>This page needs JavaScript to display my lists.</p>
+                </div>
+            </section>
+        </noscript>
+
+        <div class="to-top container">
+            <a href="#main" class="btn btn-secondary">Back to top &uarr;</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; <span id="year">2026</span> MarsDoesIt. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ---------------------------------------------------------------------------
+        // EDIT YOUR CONTENT HERE
+        //   - Each list item: { name, by (creator, optional), note (why you like it) }
+        //   - Items with todo: true show as dashed "fill me in" cards. Delete that
+        //     line once you've written the real entry.
+        //   - Add, remove or reorder sections and items freely.
+        // ---------------------------------------------------------------------------
+        const ABOUT = {
+            facts: [
+                { label: 'What I do', value: 'Software developer, roboticist, content creator & creative writer' },
+                { label: 'Teams I am On', value: 'Student mentor with Grizzly Gears FRC #9580' },
+                { label: 'Pronouns', value: 'They/He' },
+                { label: 'Fun fact', value: 'I once broke my arm playing Fruit Ninja' },
+        ]
+                ,
+
+            now: [
+                { label: 'Playing', value: 'The legend of Zelda: Twilight Princess' },
+                { label: 'Reading', value: 'Mistborn' },
+                { label: 'Watching', value: 'Abbott Elementary' },
+                { label: 'Listening to', value: 'GRMLN' }
+            ],
+
+            sections: [
+                {
+                    id: 'games',
+                    title: 'Favorite Games',
+                    blurb: 'The ones I keep coming back to.',
+                    items: [
+                        { name: 'Twilight Princess (DUSKLIGHT)', by: 'Nintendo', note: 'Nostalgic Dark Fantasy' },
+                        { name: 'Minecraft', by: 'Mojang', note: 'My comfort game' },
+                        { name: 'The Blood of Dawnwalker', by: 'Rebel Wolves', note: 'It\'s Vampires. Enough said.' }
+                    ]
+                },
+                {
+                    id: 'books',
+                    title: 'Favorite Books',
+                    blurb: 'Stories and ideas that stuck with me.',
+                    items: [
+                        { name: 'The Singularity is Nearer', by: 'Ray Kurzweil', note: 'Really helped me out understanding AI fundementals in my own projects.' },
+                        { name: 'Add a favorite book', by: 'Author', note: 'Why it stuck with you.', todo: true },
+                        { name: 'Add a favorite book', by: 'Author', note: 'Why it stuck with you.', todo: true }
+                    ]
+                },
+                {
+                    id: 'movies',
+                    title: 'Favorite Movies & Shows',
+                    blurb: 'Good comfort watches and a few that changed how I think.',
+                    items: [
+                        { name: 'What we do in the shadows (TV)', by: 'Taika Waititi', note: ' hilariously awkward and heartwarming look at the mundane struggles of supernatural beings.' },
+                        { name: 'Pantheon (TV)', by: 'AMC', note: 'A story about uploading human consciousness to computers. Not as dystopian as you\'d think.' },
+                        { name: 'Arcane (TV)', by: 'Riot Games', note: 'Insane animation, great story, goes deep into social commentary and the consequences of unchecked innovation.' }
+                    ]
+                },
+                {
+                    id: 'music',
+                    title: 'Favorite Music',
+                    blurb: 'Mostly Alternative. These are on repeat.',
+                    items: [
+                        { name: 'Locking up the Sun', by: 'Poets of the Fall', note: '' },
+                        { name: 'Line Without A Hook', by: 'Ricky Montgomery', note: '' },
+                        { name: 'Riptide', by: 'Vance Joy', note: '' }
+                    ]
+                }
+            ]
+        };
+
+        // ---------- Rendering (no need to edit below) ----------
+        function el(tag, className, text) {
+            const node = document.createElement(tag);
+            if (className) node.className = className;
+            if (text !== undefined) node.textContent = text;
+            return node;
+        }
+
+        function makeSection(id, title, blurb) {
+            const section = el('section', 'section');
+            section.id = id;
+            const container = el('div', 'container');
+            container.appendChild(el('h2', 'section-title', title));
+            if (blurb) container.appendChild(el('p', 'section-blurb', blurb));
+            section.appendChild(container);
+            return { section, container };
+        }
+
+        const content = document.getElementById('content');
+        const jump = document.getElementById('jump');
+        const jumpTargets = [];
+
+        // Quick facts
+        if (ABOUT.facts && ABOUT.facts.length) {
+            const { section, container } = makeSection('facts', 'Quick Facts');
+            const list = el('dl', 'fact-list');
+            ABOUT.facts.forEach(f => {
+                const box = el('div', 'fact');
+                box.append(el('dt', '', f.label), el('dd', '', f.value));
+                list.appendChild(box);
+            });
+            container.appendChild(list);
+            content.appendChild(section);
+            jumpTargets.push(['facts', 'Quick Facts']);
+        }
+
+        // Favorites sections
+        ABOUT.sections.forEach(sec => {
+            const { section, container } = makeSection(sec.id, sec.title, sec.blurb);
+            const grid = el('div', 'card-grid');
+            sec.items.forEach(item => {
+                const card = el('article', `card fav-card${item.todo ? ' todo' : ''}`);
+                card.appendChild(el('h3', '', item.name));
+                if (item.by) card.appendChild(el('div', 'by', item.by));
+                if (item.note) card.appendChild(el('p', '', item.note));
+                grid.appendChild(card);
+            });
+            container.appendChild(grid);
+            content.appendChild(section);
+            jumpTargets.push([sec.id, sec.title.replace('Favorite ', '')]);
+        });
+
+        // Currently into
+        if (ABOUT.now && ABOUT.now.length) {
+            const { section, container } = makeSection('now', 'Right Now', 'What is taking up my time lately.');
+            const grid = el('div', 'now-grid');
+            ABOUT.now.forEach(n => {
+                const item = el('div', 'now-item');
+                item.append(el('span', '', n.label), el('strong', '', n.value));
+                grid.appendChild(item);
+            });
+            container.appendChild(grid);
+            content.appendChild(section);
+            jumpTargets.push(['now', 'Right Now']);
+        }
+
+        jumpTargets.forEach(([id, label]) => {
+            const a = el('a', '', label);
+            a.href = `#${id}`;
+            jump.appendChild(a);
+        });
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // ---------- Pinboard background ----------
+        // To use real pictures from your board: save them into an images/pins/ folder
+        // (Pinterest doesn't allow hotlinking) and list the paths here, e.g.
+        //   const BOARD_IMAGES = ['../images/pins/one.jpg', '../images/pins/two.jpg'];
+        // Leave it empty to keep the soft coloured pins.
+        const BOARD_IMAGES = [];
+
+        (function buildPinboard() {
+            const board = document.getElementById('pinboard');
+            const COLUMNS = 7;
+            const PINS_PER_COLUMN = 9;
+            const RATIOS = [0.85, 1, 1.25, 1.5, 1.75]; // height / width, like tall and short pins
+
+            // Seeded random so the board looks the same on every visit
+            let seed = 20260;
+            function rand() {
+                seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+                let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+                t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+                return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+            }
+
+            let imageIndex = 0;
+            for (let c = 0; c < COLUMNS; c++) {
+                const col = document.createElement('div');
+                col.className = 'pin-col';
+                col.style.marginTop = `${Math.round(-rand() * 120)}px`;
+                for (let i = 0; i < PINS_PER_COLUMN; i++) {
+                    const pin = document.createElement('div');
+                    pin.className = `pin c${Math.floor(rand() * 8)}`;
+                    pin.style.aspectRatio = `1 / ${RATIOS[Math.floor(rand() * RATIOS.length)]}`;
+                    pin.style.setProperty('--x', `${Math.round(rand() * 70 + 10)}%`);
+                    pin.style.setProperty('--y', `${Math.round(rand() * 50 + 10)}%`);
+                    if (BOARD_IMAGES.length) {
+                        pin.classList.add('photo');
+                        pin.style.backgroundImage = `url("${BOARD_IMAGES[imageIndex++ % BOARD_IMAGES.length]}")`;
+                    }
+                    col.appendChild(pin);
+                }
+                board.appendChild(col);
+            }
+        })();
+    </script>
+</body>
+
+</html>

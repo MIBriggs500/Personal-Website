@@ -5,6 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MarsDoesIt | Portfolio & Blog</title>
+    <meta name="description"
+        content="Portfolio and blog of Mars: software developer, roboticist, content creator, and creative writer.">
+    <meta name="theme-color" content="#0d0d11" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+    <meta property="og:title" content="MarsDoesIt | Portfolio & Blog">
+    <meta property="og:description"
+        content="Software developer, roboticist, content creator, and creative writer.">
+    <meta property="og:type" content="website">
+
+    <!-- Enables scroll-reveal styles only when JavaScript is available -->
+    <script>document.documentElement.classList.add('js');</script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,28 +31,29 @@
 </head>
 
 <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
     <!-- Header / Navigation -->
-    <header class="header">
-        <nav class="navbar container">
+    <header class="header" id="siteHeader">
+        <nav class="navbar container" aria-label="Main navigation">
             <div class="logo-container">
                 <a href="#home" class="logo">MarsDoesIt</a>
             </div>
 
-            <button class="nav-toggle" aria-label="Toggle Navigation">
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
                 <span class="hamburger"></span>
             </button>
 
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#blog">Blog</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
+    <main id="main">
         <!-- Hero Section -->
         <section id="home" class="hero section">
             <div class="container hero-content">
@@ -59,97 +71,61 @@
 
         <!-- About Section -->
         <section id="about" class="about section">
-            <div class="container">
+            <div class="container reveal">
                 <h2 class="section-title">About Me</h2>
-                <div class="about-grid">
-                    <div class="about-text">
-                        <p>
-                            I am a passionate software engineer with experience spanning across full-stack web
-                            development, mobile apps, and game development.
-                        </p>
-                        <p>
-                            When I'm not coding, I devote my free time to writing fiction, essay pieces, and tech
-                            articles. I love exploring the intersection of technology, storytelling, and interactive
-                            design.
-                        </p>
-                    </div>
-                    <!-- Music Taste-->
-                    <!-- Music Taste -->
-                    <div class="music-taste">
-                        <h3>Music Taste</h3>
-                        <p>I am a big fan of indie music. My favorite artists include:</p>
-                        <ul class="music-list">
-                            <li>Sufjan Stevens</li>
-                            <li>Ricky Montgomery</li>
-                            <li>Mother Mother</li>
-                        </ul>
-                    </div>
+                <div class="about-text">
+                    <p>
+                        I am a passionate software engineer with experience spanning full-stack web
+                        development, mobile apps, and game development.
+                    </p>
+                    <p>
+                        When I'm not coding, I devote my free time to writing fiction, essay pieces, and tech
+                        articles. I love exploring the intersection of technology, storytelling, and interactive
+                        design.
+                    </p>
+                </div>
+
+                <div class="about-footer">
+                    <a href="pages/aboutme.html" class="btn btn-primary">More About Me &rarr;</a>
                 </div>
             </div>
         </section>
 
         <!-- Projects Section -->
         <section id="projects" class="projects section">
-            <div class="container">
+            <div class="container reveal">
                 <h2 class="section-title">Featured Projects</h2>
                 <div class="card-grid">
-                    <!-- Project 1 -->
                     <article class="card">
                         <div class="card-content">
                             <span class="card-tag">Personal Robot Project</span>
                             <h3>Robert</h3>
-                            <p>A personal robot project that I am currently working on. It is a work in progress.</p>
+                            <p>A personal robot I'm actively building. He is my son.</p>
                             <a href="#project/robert" class="card-link">View Project &rarr;</a>
                         </div>
                     </article>
 
-                    <!-- Project 2 -->
                     <article class="card">
                         <div class="card-content">
                             <span class="card-tag">Minecraft Server</span>
                             <h3>The Afterlife</h3>
-                            <p>A Minecraft server that I am currently working on.</p>
+                            <p>A 26.2 survival server with seasonal resource packs and events.</p>
                             <a href="#project/minecraft" class="card-link">View Project &rarr;</a>
                         </div>
                     </article>
-
                 </div>
-                <!-- Button rerdirecting to project overlay-->
+
                 <div class="project-footer">
                     <a href="#project/all" class="btn btn-primary">View All Projects &rarr;</a>
                 </div>
             </div>
         </section>
 
-        <!-- Blog Section -->
-        <section id="blog" class="blog section">
-            <div class="container">
-                <h2 class="section-title">Latest Posts</h2>
-                <div class="card-grid">
-                    <!-- Blog Post 1 -->
-                    <article class="card blog-card">
-                        <div class="card-content">
-                            <time datetime="2026-09-15" class="post-date">Sep 15, 2026</time>
-                            <h3><a href="#blog/worldbuilding-in-interactive-storytelling">Worldbuilding in Interactive
-                                    Storytelling</a></h3>
-                            <p>How narrative design principles in video games can improve traditional fiction writing.
-                            </p>
-                            <a href="#blog/worldbuilding-in-interactive-storytelling" class="card-link">Read Post
-                                &rarr;</a>
-                        </div>
-                    </article>
-
-                </div>
-            </div>
-            <!-- Button rerdirecting to blog overlay-->
-            <div class="blog-footer">
-                <a href="#blog/all" class="btn btn-primary">View All Posts &rarr;</a>
-            </div>
         </section>
 
         <!-- Experience Section -->
         <section id="experience" class="experience section">
-            <div class="container">
+            <div class="container reveal">
                 <h2 class="section-title">Experience</h2>
                 <div class="timeline">
                     <div class="timeline-item">
@@ -159,30 +135,31 @@
                         <p>Mentored high school students in robotics, guiding them through the design, build, and
                             programming phases of their competition robot.</p>
                     </div>
-                    <div class="skills">
-                        <h3>Skills & Tech Stack</h3>
-                        <ul class="skill-tags">
-                            <li>Java</li>
-                            <li>C#</li>
-                            <li>C++</li>
-                            <li>Python</li>
-                            <li>JavaScript / TypeScript</li>
-                            <li>React / Vue</li>
-                            <li>HTML5 / CSS3</li>
-                            <li>Node.js</li>
-                            <li>Mobile Dev (React)</li>
-                            <li>Game Dev (Godot)</li>
-                            <li>3D Modeling (Blender)</li>
-                            <li>Creative Writing</li>
-                        </ul>
-                    </div>
+                </div>
+
+                <div class="skills">
+                    <h3>Skills & Tech Stack</h3>
+                    <ul class="skill-tags">
+                        <li>Java</li>
+                        <li>C#</li>
+                        <li>C++</li>
+                        <li>Python</li>
+                        <li>JavaScript / TypeScript</li>
+                        <li>React / Vue</li>
+                        <li>HTML5 / CSS3</li>
+                        <li>Node.js</li>
+                        <li>Mobile Dev (React)</li>
+                        <li>Game Dev (Godot)</li>
+                        <li>3D Modeling (Blender)</li>
+                        <li>Creative Writing</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
         <section id="contact" class="contact section">
-            <div class="container">
+            <div class="container reveal">
                 <h2 class="section-title">Get In Touch</h2>
                 <!-- <p class="contact-text">
                     Whether you have a question, want to collaborate, or just want to say
@@ -191,7 +168,8 @@
                 <div class="contact-buttons">
                     <!-- <a href="mailto:[EMAIL_ADDRESS]" class="btn btn-primary">Send Email</a> -->
                     <div class="social-links">
-                        <a href="https://www.reddit.com/user/marsdoesit" rel="noopener noreferrer">Reddit</a>
+                        <a href="https://www.reddit.com/user/marsdoesit" target="_blank"
+                            rel="noopener noreferrer">Reddit</a>
                         <a href="https://github.com/MIBriggs500" target="_blank" rel="noopener noreferrer">GitHub</a>
                         <a href="https://marsdoesit.itch.io/" target="_blank" rel="noopener noreferrer">itch.io</a>
                         <a href="https://www.instagram.com/yourfriendlymartian/" target="_blank"
@@ -218,52 +196,29 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 MarsDoesIt. All rights reserved.</p>
+            <p>&copy; <span id="year">2026</span> MarsDoesIt. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Debug Floating Panel -->
-    <div class="theme-debug-panel">
-        <div class="debug-header">
-            <span>Theme Inspector</span>
-            <span id="activeModeLabel" style="color: #f43f5e;">DARK</span>
-        </div>
-
-        <div style="margin-bottom: 6px;">Force Theme Difference:</div>
-        <div class="debug-controls">
-            <button class="debug-btn active" id="btnVampire" onclick="setForceTheme('vampire')">Dark</button>
-            <button class="debug-btn" id="btnLight" onclick="setForceTheme('light')">Light</button>
-        </div>
-
-        <div style="margin-top: 8px; font-size: 0.7rem; color: #9ca3af;">Active Key Swatches:</div>
-        <div class="debug-swatches">
-            <div id="swatchBg" class="swatch-box">BG</div>
-            <div id="swatchPrimary" class="swatch-box">PRI</div>
-            <div id="swatchCard" class="swatch-box">CARD</div>
-        </div>
-    </div>
-
-    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <!-- Ko-fi widget -->
+    <script src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"></script>
     <script>
-        // Detect if system is set to dark mode
         const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
         kofiWidgetOverlay.draw('marsdoesit', {
             'type': 'floating-chat',
             'floating-chat.donateButton.text': 'Support me',
-            // Dark mode vs Light mode colors
             'floating-chat.donateButton.background-color': isDarkMode ? '#222222' : '#d9534f',
             'floating-chat.donateButton.text-color': '#ffffff'
         });
     </script>
 
-    <!-- JavaScript -->
-    <script src="scripts/data.js"></script>
+    <!-- JavaScript (Data.js is capitalised to match the actual filename; Linux hosts like Netlify are case-sensitive) -->
+    <script src="scripts/Data.js"></script>
     <script src="scripts/main.js"></script>
-    <script src="scripts/modeToggle.js"></script>
 
-    <!--Easter Eggs-->
-    <input type="text" id="EasterEggBox" placeholder="Enter a code...">
+    <!-- Easter Eggs -->
+    <input type="text" id="EasterEggBox" placeholder="Enter a code..." aria-label="Enter a code">
 </body>
 
 </html>
