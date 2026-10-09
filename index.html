@@ -201,14 +201,22 @@
         </div>
     </footer>
 
-    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <!-- Ko-fi widget -->
     <script>
-        kofiWidgetOverlay.draw('marsdoesit', {
-            'type': 'floating-chat',
-            'floating-chat.donateButton.text': 'Support me',
-            'floating-chat.donateButton.background-color': '#00b9fe',
-            'floating-chat.donateButton.text-color': '#fff'
-        });
+        (function() {
+            var script = document.createElement('script');
+            script.src = 'https://storage.ko-fi.com/cdn/scripts/overlay-widget.js';
+            script.onload = function() {
+                var isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                kofiWidgetOverlay.draw('marsdoesit', {
+                    'type': 'floating-chat',
+                    'floating-chat.donateButton.text': 'Support me',
+                    'floating-chat.donateButton.background-color': isDarkMode ? '#222222' : '#d9534f',
+                    'floating-chat.donateButton.text-color': '#ffffff'
+                });
+            };
+            document.body.appendChild(script);
+        })();
     </script>
 
     <!-- JavaScript (Data.js is capitalised to match the actual filename; Linux hosts like Netlify are case-sensitive) -->
